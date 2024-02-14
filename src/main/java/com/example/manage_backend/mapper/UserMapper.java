@@ -1,6 +1,6 @@
 package com.example.manage_backend.mapper;
 
-import com.example.manage_backend.entity.User;
+import com.example.manage_backend.domain.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public interface UserMapper {
      * @param user
      */
     @Insert("INSERT INTO sys_user(username, password, address) VALUES (#{username}, #{password}, #{address})")
-    int insertUser(User user);
+    Boolean insertUser(User user);
 
     /**
      * 更新用户信息
@@ -29,7 +29,7 @@ public interface UserMapper {
      * @return
      */
     @Update("UPDATE sys_user SET password =#{password}, address =#{address} WHERE id = #{id}")
-    int updateUser(User user);
+    Boolean updateUser(User user);
 
 
     /**
@@ -38,7 +38,15 @@ public interface UserMapper {
      * @return
      */
     @Delete("DELETE FROM sys_user WHERE id = #{id}")
-    int deleteUser(Integer id);
+    Boolean deleteUser(Integer id);
+
+    /**
+     * 根据用户名查询信息
+     * @param username
+     * @return
+     */
+    @Select("SELECT * FROM sys_user WHERE username = #{username}")
+    User queryUser(String username);
 
     /**
      * 根据页数查询出相对应的user信息列表

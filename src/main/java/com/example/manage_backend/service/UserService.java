@@ -1,7 +1,8 @@
 package com.example.manage_backend.service;
 
-import com.example.manage_backend.entity.User;
-import org.springframework.stereotype.Service;
+import com.example.manage_backend.domain.entity.User;
+import com.example.manage_backend.domain.vo.LoginInfo;
+import com.example.manage_backend.domain.vo.RegisterInfo;
 
 import java.util.List;
 
@@ -9,13 +10,19 @@ public interface UserService {
 
     List<User> findAllUsers();
 
-    int insertUser(User user);
+    Boolean insertUser(User user);
 
-    int updateUser(User user);
+    Boolean updateUser(User user);
 
-    int deleteUser(Integer id);
+    Boolean deleteUser(Integer id);
 
     List<User> getUsersByPage(Integer pageNum, Integer pageSize, String username);
 
     int getTotalNum(String username);
+
+    Boolean login(LoginInfo loginInfo);
+
+    Boolean register(RegisterInfo registerInfo);
+
+    User getUserByName(String username);
 }
